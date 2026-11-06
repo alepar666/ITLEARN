@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#101512" />
+    <meta name="description" content="Italienisch auf B1-Niveau lernen und wiederholen – auch offline." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Italienisch B1" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Italienisch B1</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#lernen" aria-label="Italienisch B1">
+          <span class="brand-mark" aria-label="B1 vor der italienischen Flagge"><span class="flag-stripe flag-green"></span><span class="flag-stripe flag-white"></span><span class="flag-stripe flag-red"></span><span class="brand-code">B1</span></span>
+          <span>Italienisch B1</span>
+        </a>
+        <button id="install-button" class="install-button" hidden type="button">App installieren</button>
+      </header>
+
+      <dialog id="install-help-dialog" class="install-dialog" aria-labelledby="install-help-title" aria-describedby="install-help-description">
+        <div class="install-dialog-topline">
+          <span class="eyebrow">IPHONE UND IPAD</span>
+          <button id="close-install-help" class="install-dialog-close" type="button" aria-label="Anleitung schließen">×</button>
+        </div>
+        <h2 id="install-help-title">Italienisch B1 installieren</h2>
+        <p id="install-help-description">Tippe in Safari auf „Teilen“ und füge die App zum Home-Bildschirm hinzu:</p>
+        <ol>
+          <li>Tippe auf <strong>Teilen</strong> <span aria-hidden="true">↑</span>.</li>
+          <li>Wähle <strong>Zum Home-Bildschirm</strong>.</li>
+          <li>Tippe zur Bestätigung auf <strong>Hinzufügen</strong>.</li>
+        </ol>
+      </dialog>
+
+      <dialog id="sync-dialog" class="install-dialog sync-dialog" aria-labelledby="sync-title" aria-describedby="sync-description">
+        <div class="install-dialog-topline">
+          <span class="eyebrow">FORTSCHRITT AUF MEHREREN GERÄTEN</span>
+          <button id="close-sync-dialog" class="install-dialog-close" type="button" aria-label="Synchronisierung schließen">×</button>
+        </div>
+        <h2 id="sync-title">Fortschritt synchronisieren</h2>
+        <p id="sync-description">Erstelle zuerst auf einem Gerät ein Profil. Gib den angezeigten Code anschließend auf dem zweiten Gerät ein. Dort werden die bisherigen lokalen Lernstände ersetzt.</p>
+        <p id="sync-message" class="sync-message" role="status" aria-live="polite" hidden></p>
+        <div id="sync-unlinked" class="sync-actions">
+          <button id="sync-create-button" class="answer-button answer-yes" type="button">Code auf diesem Gerät erstellen</button>
+          <label for="sync-code-input">Oder mit einem vorhandenen Code verbinden</label>
+          <input id="sync-code-input" class="sync-code-input" type="text" inputmode="text" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Synchronisierungscode einfügen" />
+          <button id="sync-join-button" class="sync-secondary" type="button">Verbinden und lokale Lernstände ersetzen</button>
+        </div>
+        <div id="sync-linked" class="sync-actions" hidden>
+          <p>Dieses Gerät verwendet bereits das Profil:</p>
+          <code id="sync-code-display" class="sync-code-display"></code>
+          <button id="sync-copy-button" class="sync-secondary" type="button">Code kopieren</button>
+          <button id="sync-now-button" class="sync-secondary" type="button">Jetzt synchronisieren</button>
+          <button id="sync-unlink-button" class="sync-text-button" type="button">Dieses Gerät trennen</button>
+        </div>
+      </dialog>
+
+      <section id="review-view" class="view active" aria-label="Wiederholen">
+        <div class="stats-row" aria-label="Dein Lernfortschritt">
+          <div class="stat"><strong id="due-count">0</strong><span>Karten verfügbar</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong id="learned-count">0</strong><span>Karten gelernt</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><strong id="total-count">0</strong><span>Karten insgesamt</span></div>
+        </div>
+
+        <section class="category-progress" aria-label="Fortschritt je Bereich">
+          <div class="progress-category" data-progress-category="vocabulary">
+            <div class="progress-category-heading"><span class="progress-category-name">Wortschatz</span><span class="progress-category-count">0 / 0</span></div>
+            <div class="progress-track" role="progressbar" aria-label="Wortschatz: gelernte Karten" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><span class="progress-fill"></span></div>
+          </div>
+          <div class="progress-category" data-progress-category="verbs">
+            <div class="progress-category-heading"><span class="progress-category-name">Verben</span><span class="progress-category-count">0 / 0</span></div>
+            <div class="progress-track" role="progressbar" aria-label="Verben: gelernte Karten" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><span class="progress-fill"></span></div>
+          </div>
+          <div class="progress-category" data-progress-category="grammar">
+            <div class="progress-category-heading"><span class="progress-category-name">Grammatik</span><span class="progress-category-count">0 / 0</span></div>
+            <div class="progress-track" role="progressbar" aria-label="Grammatik: gelernte Karten" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0"><span class="progress-fill"></span></div>
+          </div>
+        </section>
+
+        <div id="study-tabs" class="study-tabs" role="group" aria-label="Lernbereich auswählen">
+          <button class="study-tab" type="button" data-study-category="vocabulary" aria-pressed="false">Wortschatz</button>
+          <button class="study-tab" type="button" data-study-category="verbs" aria-pressed="false">Verben</button>
+          <button class="study-tab" type="button" data-study-category="grammar" aria-pressed="false">Grammatik</button>
+          <button class="study-tab selected" type="button" data-study-category="random" aria-pressed="true">Zufall</button>
+        </div>
+
+        <section id="study-panel" class="study-panel" aria-live="polite">
+          <div id="card-meta" class="card-meta">
+            <span id="card-category" class="category-pill">BEREIT</span>
+            <span id="card-counter" class="card-counter"></span>
+          </div>
+
+          <button id="flashcard" class="flashcard" type="button" aria-label="Antwort anzeigen">
+            <span id="card-face" class="card-face">
+              <span id="card-front-direction" class="card-direction">WIE HEISST DAS AUF ITALIENISCH?</span>
+              <span id="card-question-word" class="card-word">Ciao!</span>
+              <span id="card-hint" class="card-hint">Überlege kurz und tippe dann auf die Karte</span>
+            </span>
+            <span id="card-back" class="card-back" hidden>
+              <span id="card-back-direction" class="card-direction">AUF ITALIENISCH</span>
+              <span id="card-italian" class="card-word italian-word"></span>
+              <span id="card-extra" class="card-extra"></span>
+            </span>
+            <span class="flip-cue" aria-hidden="true">↻</span>
+          </button>
+
+          <div id="answer-prompt" class="answer-prompt" hidden>
+            <p>Gewusst?</p>
+            <div class="answer-buttons">
+              <button id="no-button" class="answer-button answer-no" type="button"><span aria-hidden="true">↻</span> Nein</button>
+              <button id="yes-button" class="answer-button answer-yes" type="button"><span aria-hidden="true">✓</span> Ja</button>
+            </div>
+          </div>
+          <div id="empty-state" class="empty-state" hidden>
+            <span class="empty-icon" aria-hidden="true">✓</span>
+            <h2 id="empty-title">Zurzeit sind keine Karten verfügbar.</h2>
+            <p id="empty-message">Du hast alle fälligen Karten wiederholt. Die nächsten kommen später.</p>
+            <button id="practice-all-button" class="text-button" type="button">Trotzdem wiederholen</button>
+          </div>
+        </section>
+
+        <div class="below-card">
+          <p class="daily-note"><span id="daily-note-text"></span></p>
+          <button id="browse-link" class="browse-link" type="button">Wortschatz ansehen <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section id="vocabulary-view" class="view vocabulary-view" aria-labelledby="vocab-title" hidden>
+        <button id="back-to-review" class="back-link" type="button"><span aria-hidden="true">←</span> Zurück zum Lernen</button>
+        <p class="eyebrow">WORTSCHATZ UND GRAMMATIK</p>
+        <h1 id="vocab-title">Wortschatz.</h1>
+        <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Auf Deutsch oder Italienisch suchen" autocomplete="off" /></div>
+        <div id="category-filters" class="category-filters" aria-label="Nach Thema filtern"></div>
+        <p id="vocab-result-count" class="result-count"></p>
+        <div id="vocab-list" class="vocab-list"></div>
+      </section>
+
+      <footer class="footer" aria-label="Informationen">
+        <p id="sync-status">Lernstände werden auf diesem Gerät gespeichert.</p>
+        <button id="sync-settings-button" class="sync-text-button" type="button">Zwischen Geräten synchronisieren</button>
+      </footer>
+    </main>
+    <script src="vocab.js"></script>
+    <script src="sync-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

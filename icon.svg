@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>Italienisch B1</title>
+  <desc>B1 vor den grünen, weißen und roten Farben der italienischen Flagge</desc>
+  <defs><clipPath id="icon-shape"><rect width="512" height="512" rx="112"/></clipPath></defs>
+  <g clip-path="url(#icon-shape)">
+    <path fill="#009246" d="M0 0h171v512H0z"/>
+    <path fill="#f1f2f1" d="M171 0h170v512H171z"/>
+    <path fill="#ce2b37" d="M341 0h171v512H341z"/>
+    <text x="256" y="270" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="174" font-weight="900" fill="#fff" stroke="#101512" stroke-width="12" stroke-linejoin="round" paint-order="stroke">B1</text>
+  </g>
+</svg>
